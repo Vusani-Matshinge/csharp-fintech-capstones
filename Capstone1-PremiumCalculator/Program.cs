@@ -1,87 +1,118 @@
-﻿namespace ThePremiumCalculatorv1
+﻿namespace TheInteractivePremiumCalculator
 {
 	internal class Program
 	{
 		static void Main(string[] args)
 		{
-			string headingBorder = "=====================================================";
+			string border = "=====================================================";
+			string dashboardMessage = "       SureGuard | Vehicle Risk Assessment";
 			string divider = "-----------------------------------------------------";
-			string dashboardTitle = "          SureGuard Insurance | Client Quote";
-			string banner = "    Thank you for choosing SureGuard Insurance";
-			string clientName = "Thabo Nkosi";
-			string clientIdNumber = "9506015800083";
-			int clientAge = 29;
 
-			double vehicleValue = 450000.00;
-			double vehiclePremiumRate = 0.0025;
+			string clientName;
+			int clientAge,
+				creditScore,
+				yearsLicensed;
+			double vehicleValue;
 
-			double homeValue = 1200000.00;
-			double homePremiumRate = 0.0005;
-
-			double coverAmount = 2000000.00;
-			double lifePremiumRate = 0.0003;
-
+			double premiumRate = 0.0025;
+			double riskAdjustmentRate = 0.05;
 			double vatRate = 0.15;
 
-			//Vehicle Premium Calculation
-			double vehiclePremium = vehicleValue * vehiclePremiumRate;
-			double vehiclePremiumVAT = vehiclePremium * vatRate;
-			double totalVehiclePayable = vehiclePremium + vehiclePremiumVAT;
+			Console.Write("Please enter your full name: ");
+			clientName = Console.ReadLine();
 
-			//Home Premium Calculation
-			double homePremium = homeValue * homePremiumRate;
-			double homePremiumVAT = homePremium * vatRate;
-			double totalHomePayable = homePremium + homePremiumVAT;
+			Console.Write("Please enter your age: ");
+			clientAge = Convert.ToInt32(Console.ReadLine());
 
-			//Life Premium Calculation
-			double lifePremium = coverAmount * lifePremiumRate;
-			double lifePremiumVAT = lifePremium * vatRate;
-			double totalLifePayable = lifePremium + lifePremiumVAT;
+			Console.Write("Please enter vehicle value: ");
+			vehicleValue = Convert.ToDouble(Console.ReadLine());
 
-			double totalMonthlyPayable = totalVehiclePayable + totalHomePayable + totalLifePayable;
+			Console.WriteLine("PLease enter your credit score: ");
+			creditScore = Convert.ToInt32(Console.ReadLine());
 
-			//Output
-			Console.WriteLine(headingBorder);
-			Console.WriteLine(dashboardTitle);
-			Console.WriteLine(headingBorder);
-			Console.WriteLine($"Client:              {clientName}");
-			Console.WriteLine($"Age:                 {clientAge}");
-			Console.WriteLine($"ID Number:           {clientIdNumber}");
+			int ageRiskPoints;
+			string ageRiskLabel;
 
-			Console.WriteLine();
-			Console.WriteLine(divider);
-			Console.WriteLine("PRODUCT 1: Vehicle Insurance");
-			Console.WriteLine($"Vehicle Value:       R {vehicleValue:F2}");
-			Console.WriteLine($"Monthly Premium:     R {vehiclePremium:F2}");
-			Console.WriteLine($"VAT (15%):           R {vehiclePremiumVAT:F2}");
-			Console.WriteLine($"Total Payable:       R {totalVehiclePayable:F2}");
+			if (clientAge < 25)
+			{
+				ageRiskPoints = 2;
+				ageRiskLabel = "High";
+			}
+			else if (clientAge <= 35)
+			{
+				ageRiskPoints = 1;
+				ageRiskLabel = "Medium";
+			}
+			else
+			{
+				ageRiskPoints = 0;
+				ageRiskLabel = "Low";
+			}
 
-			Console.WriteLine();
-			Console.WriteLine(divider);
-			Console.WriteLine("PRODUCT 2: Home Insurance");
-			Console.WriteLine($"Home Value:          R {homeValue:F2}");
-			Console.WriteLine($"Monthly Premium:     R {homePremium:F2}");
-			Console.WriteLine($"VAT (15%):           R {homePremiumVAT:F2}");
-			Console.WriteLine($"Total Payable:       R {totalHomePayable:F2}");
+			int creditRiskPoints;
+			string creditRiskLabel;
 
-			Console.WriteLine();
-			Console.WriteLine(divider);
-			Console.WriteLine("PRODUCT 3: Life Insurance");
-			Console.WriteLine($"Cover Amount:        R {coverAmount:F2}");
-			Console.WriteLine($"Monthly Premium:     R {lifePremium:F2}");
-			Console.WriteLine($"VAT (15%):           R {lifePremiumVAT:F2}");
-			Console.WriteLine($"Total Payable:       R {totalLifePayable:F2}");
+			if (creditScore < 600)
+			{
+				creditRiskPoints = 2;
+				creditRiskLabel = "High";
+			}
+			else if (creditScore <= 700)
+			{
+				creditRiskPoints = 1;
+				creditRiskLabel = "Medium";
+			}
+			else
+			{
+				creditRiskPoints = 0;
+				creditRiskLabel = "Low";
+			}
 
-			Console.WriteLine(divider);
-			Console.WriteLine();
-			Console.WriteLine($"TOTAL MONTHLY PAYABLE: R {totalMonthlyPayable:F2}");
+			int experienceRiskPoints;
+			string experienceRiskLabel;
 
-			Console.WriteLine(headingBorder);
-			Console.WriteLine(banner);
-			Console.WriteLine(headingBorder);
+			if (yearsLicensed < 3)
+			{
+				experienceRiskPoints = 2;
+				experienceRiskLabel = "High";
+			}
+			else if (yearsLicensed <= 5)
+			{
+				experienceRiskPoints = 1;
+				experienceRiskLabel = "Medium";
+			}
+			else
+			{
+				experienceRiskPoints = 0;
+				experienceRiskLabel = "Low";
+			}
 
+			int totalRiskScore = ageRiskPoints + creditRiskPoints + experienceRiskPoints;
 
+			string riskCategory;
 
+			if (totalRiskScore >= 4)
+			{
+				riskCategory = "High Risk";
+			}
+			else if (totalRiskScore >= 2)
+			{
+				riskCategory = "Medium Risk";
+			}
+			else
+			{
+				riskCategory = "Low Risk";
+			}
+
+			double premiumRate = 0.0025;
+			double riskAdjustmentRate = 0.05;
+			double vatRate = 0.15;
+
+			double basePremium = vehicleValue * premiumRate;
+			double riskAdjustment = basePremium * riskAdjustmentRate * totalRiskScore;
+			double finalPremium = basePremium + riskAdjustment;
+			double vat = finalPremium * vatRate;
+			double totalPayable = finalPremium + vat;
 		}
 	}
 }

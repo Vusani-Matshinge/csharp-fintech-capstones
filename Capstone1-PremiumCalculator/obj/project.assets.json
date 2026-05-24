@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vusan\\Documents\\Visual Studio Code Repos\\ThePremiumCalculatorv1\\ThePremiumCalculatorv1.csproj",
-      "projectName": "ThePremiumCalculatorv1",
-      "projectPath": "C:\\Users\\vusan\\Documents\\Visual Studio Code Repos\\ThePremiumCalculatorv1\\ThePremiumCalculatorv1.csproj",
+      "projectUniqueName": "C:\\Users\\vusan\\Documents\\Visual Studio Code Repos\\TheInteractivePremiumCalculator\\TheInteractivePremiumCalculator.csproj",
+      "projectName": "TheInteractivePremiumCalculator",
+      "projectPath": "C:\\Users\\vusan\\Documents\\Visual Studio Code Repos\\TheInteractivePremiumCalculator\\TheInteractivePremiumCalculator.csproj",
       "packagesPath": "C:\\Users\\vusan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vusan\\Documents\\Visual Studio Code Repos\\ThePremiumCalculatorv1\\obj\\",
+      "outputPath": "C:\\Users\\vusan\\Documents\\Visual Studio Code Repos\\TheInteractivePremiumCalculator\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
